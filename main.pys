@@ -1,0 +1,63 @@
+import random
+
+class Cat:
+    def __init__(self, name):
+        self.name = name
+        self.gladness = 50
+        self.satiety = 50
+        self.alive = True
+
+    def to_eat(self):
+        print("Time to eat!")
+        self.satiety += 15
+        self.gladness += 2
+
+    def to_sleep(self):
+        print("I will sleep...")
+        self.satiety -= 5
+        self.gladness += 5
+
+    def to_play(self):
+        print("Play time!")
+        self.gladness += 10
+        self.satiety -= 10
+
+    def is_alive(self):
+        if self.satiety <= 0:
+            print("Starving...")
+            self.alive = False
+        elif self.gladness <= 0:
+            print("Sad cat...")
+            self.alive = False
+
+    def end_of_day(self):
+        print(f"Gladness={self.gladness}")
+        print(f"Satiety={self.satiety}")
+
+    def live(self, day):
+        day_str = "Day " + str(day) + " of " + self.name + " life"
+        print(f"{day_str:=^50}")
+        
+        if self.satiety < 20:
+            self.to_eat()
+        elif self.gladness < 20:
+            self.to_play()
+        else:
+            dice = random.randint(1, 3)
+            if dice == 1:
+                self.to_eat()
+            elif dice == 2:
+                self.to_sleep()
+            elif dice == 3:
+                self.to_play()
+
+        self.end_of_day()
+        self.is_alive()
+
+
+Tom = Cat(name="Tom")
+
+for day in range(365):
+    if Tom.alive == False:
+        break
+    Tom.live(day)
