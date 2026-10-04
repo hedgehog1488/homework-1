@@ -1,0 +1,60 @@
+class Task:
+    def __init__(self, name, description, deadline):
+        self.name = name
+        self.description = description
+        self.deadline = deadline
+        self.is_done = False
+
+    def mark_done(self):
+        self.is_done = True
+        print(f"Task '{self.name}' is marked as done!")
+
+
+class TaskManager:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task):
+        self.tasks.append(task)
+        print(f"Task '{task.name}' added.")
+
+    def remove_task(self, task_name):
+        for task in self.tasks:
+            if task.name == task_name:
+                self.tasks.remove(task)
+                print(f"Task '{task_name}' removed.")
+                return
+        print(f"Task '{task_name}' not found.")
+
+    def mark_task_done(self, task_name):
+        for task in self.tasks:
+            if task.name == task_name:
+                task.mark_done()
+                return
+        print(f"Task '{task_name}' not found.")
+
+    def print_tasks(self):
+        if self.tasks:
+            print("\nList of tasks:")
+            for task in self.tasks:
+                status = "Done" if task.is_done else "Not done"
+                print(f"- {task.name} ({task.description}) | Deadline: {task.deadline} | Status: {status}")
+        else:
+            print("\nNo tasks in list.")
+
+
+task1 = Task("Homework", "Do Python assignment", "Tomorrow")
+task2 = Task("Cleaning", "Clean the room", "Friday")
+
+manager = TaskManager()
+
+manager.add_task(task1)
+manager.add_task(task2)
+
+manager.print_tasks()
+
+manager.mark_task_done("Homework")
+manager.print_tasks()
+
+manager.remove_task("Cleaning")
+manager.print_tasks()
