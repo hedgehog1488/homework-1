@@ -1,0 +1,30 @@
+class ProgrammingLanguage:
+    def __init__(self, name):
+        self.name = name
+
+    def print_greeting(self):
+        print(f"Привіт! Я мова програмування {self.name}.")
+
+
+class Python(ProgrammingLanguage):
+    def __init__(self):
+        super().__init__("Python")
+
+
+class CSharp(ProgrammingLanguage):
+    def __init__(self):
+        super().__init__("C#")
+
+
+class JavaScript(ProgrammingLanguage):
+    def __init__(self):
+        super().__init__("JavaScript")
+
+
+lang1 = Python()
+lang2 = CSharp()
+lang3 = JavaScript()
+
+lang1.print_greeting()
+lang2.print_greeting()
+lang3.print_greeting()
