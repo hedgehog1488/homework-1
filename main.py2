@@ -1,0 +1,5 @@
+try:
+    number = int(input("Введіть ціле число: "))
+    print(f"Ви ввели число: {number}")
+except ValueError:
+    print("Помилка: введені дані не можна конвертувати в ціле число")
